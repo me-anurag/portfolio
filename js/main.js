@@ -4,14 +4,14 @@ class PortfolioApp {
     this.book = new BookEngine();
 
     this.pages = [
-      { id: 'home', label: 'Home', icon: '<i class="fa-solid fa-house"></i>', file: 'pages/home.html' },
-      { id: 'about', label: 'About', icon: '<i class="fa-solid fa-user"></i>', file: 'pages/about.html' },
-      { id: 'skills', label: 'Skills', icon: '<i class="fa-solid fa-bolt"></i>', file: 'pages/skills.html' },
-      { id: 'projects', label: 'Projects', icon: '<i class="fa-solid fa-diagram-project"></i>', file: 'pages/projects.html' },
-      { id: 'certificates', label: 'Certificates', icon: '<i class="fa-solid fa-award"></i>', file: 'pages/certificates.html' },
-      { id: 'training', label: 'Training', icon: '<i class="fa-solid fa-bullseye"></i>', file: 'pages/training.html' },
-      { id: 'education', label: 'Education', icon: '<i class="fa-solid fa-graduation-cap"></i>', file: 'pages/education.html' },
-      { id: 'contact', label: 'Contact', icon: '<i class="fa-solid fa-envelope"></i>', file: 'pages/contact.html' },
+        { id: 'home', label: 'Home', icon: '<i class="fa-solid fa-house"></i>', file: '/pages/home.html' },
+        { id: 'about', label: 'About', icon: '<i class="fa-solid fa-user"></i>', file: '/pages/about.html' },
+        { id: 'skills', label: 'Skills', icon: '<i class="fa-solid fa-bolt"></i>', file: '/pages/skills.html' },
+        { id: 'projects', label: 'Projects', icon: '<i class="fa-solid fa-diagram-project"></i>', file: '/pages/projects.html' },
+        { id: 'certificates', label: 'Certificates', file: '/pages/certificates.html' },
+        { id: 'training', label: 'Training', file: '/pages/training.html' },
+        { id: 'education', label: 'Education', file: '/pages/education.html' },
+        { id: 'contact', label: 'Contact', file: '/pages/contact.html' }
     ];
 
     this.init();
