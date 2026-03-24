@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anurag Patel — AI Engineer & Software Developer</title>
+  <meta name="description" content="Portfolio of Anurag Patel — AI Engineer, Machine Learning Enthusiast, and CSE Student at LPU." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/book.css" />
+  <link rel="stylesheet" href="css/neural.css" />
+  <link rel="stylesheet" href="css/pages/home.css" />
+  <link rel="stylesheet" href="css/pages/sections.css" />
+
+  <style>
+    /* Additional inline tweaks */
+    .skill-chip { cursor: default; }
+  </style>
+  <!-- Font Awesome (for general icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Devicon (for tech icons) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="nav-logo" style="width:52px;height:52px;font-size:1.3rem;border-radius:16px;">AP</div>
+    <div class="loader-name">Anurag <span>Patel</span></div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-sub">// initializing neural pages...</div>
+  </div>
+
+  <!-- App Shell -->
+  <div id="app">
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <div class="nav-brand">
+        <div class="nav-logo">AP</div>
+        <div>
+          <div class="nav-title">Anurag <span>Patel</span></div>
+          <span class="nav-subtitle">AI Engineer · Software Developer</span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="https://github.com/me-anurag" target="_blank" class="nav-icon-btn" title="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/anurag-patel13" target="_blank" class="nav-icon-btn" title="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="mailto:iamanuragpatel13@gmail.com" class="nav-icon-btn" title="Email">✉</a>
+        <a href="assets/resume/resume.pdf" download class="nav-cv-btn">
+          ⬇ Resume
+        </a>
+      </div>
+    </nav>
+
+    <!-- PROGRESS BAR -->
+    <div id="progress-bar-track">
+      <div id="progress-bar-fill" style="width:0%"></div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+      <!-- Built dynamically by JS -->
+    </aside>
+
+    <!-- MAIN CONTENT / BOOK -->
+    <main id="main-area">
+      <!-- Page nav arrows -->
+      <button class="page-arrow disabled" id="arrow-prev" title="Previous page (←)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="page-arrow" id="arrow-next" title="Next page (→)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+
+      <!-- Book container -->
+      <div id="book-container">
+        <!-- Pages injected by JS -->
+      </div>
+    </main>
+
+    <!-- NEURAL NETWORK PANEL -->
+    <aside id="neural-panel">
+      <div class="neural-status">
+        <div class="neural-dot"></div>
+        <span class="neural-status-text">LIVE · NEURAL NET</span>
+      </div>
+
+      <canvas id="neural-canvas"></canvas>
+
+      <div class="neural-stats">
+        <div class="n-stat">
+          <span class="n-stat-val" id="neural-stat-nodes">22</span>
+          <span class="n-stat-label">nodes</span>
+        </div>
+        <div class="n-stat">
+          <span class="n-stat-val" id="neural-stat-edges">—</span>
+          <span class="n-stat-label">synapses</span>
+        </div>
+        <div class="n-stat">
+          <span class="n-stat-val" id="neural-stat-active">0</span>
+          <span class="n-stat-label">firing</span>
+        </div>
+      </div>
+
+      <div class="neural-label">Artificial Neural Network Simulation</div>
+    </aside>
+
+    <!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-left">
+    © 2025 <span>Anurag Patel</span>. All rights reserved.
+  </div>
+
+  <div class="footer-center">
+    <a href="mailto:iamanuragpatel13@gmail.com" class="footer-link">
+      iamanuragpatel13@gmail.com
+    </a>
+    <div class="footer-dot"></div>
+    <a href="https://github.com/me-anurag" target="_blank" rel="noopener noreferrer" class="footer-link">
+      GitHub
+    </a>
+    <div class="footer-dot"></div>
+    <a href="https://www.linkedin.com/in/anurag-patel13" target="_blank" rel="noopener noreferrer" class="footer-link">
+      LinkedIn
+    </a>
+    <div class="footer-dot"></div>
+    <a href="assets/resume/resume.pdf" download class="footer-link">
+      Resume
+    </a>
+  </div>
+
+  <div class="footer-right">
+    <div class="kbd-hint">
+      <span class="kbd">←</span>
+      <span class="kbd">→</span>
+      <span>Use arrow keys to navigate</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  #footer {
+    background-color: #0f172a; /* dark slate */
+    color: #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 40px;
+    font-family: Arial, sans-serif;
+    border-top: 1px solid #1e293b;
+  }
+
+  .footer-left {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+
+  .footer-left span {
+    color: #e2e8f0;
+    font-weight: 600;
+  }
+
+  .footer-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-link {
+    color: #cbd5f5;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: #ffffff;
+  }
+
+  .footer-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #475569;
+    border-radius: 50%;
+  }
+
+  .footer-right {
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .kbd-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .kbd {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-bottom: 2px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #e2e8f0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    #footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .footer-center {
+      justify-content: center;
+    }
+  }
+</style>
+
+  </div><!-- #app -->
+
+  <!-- Scripts -->
+  <script src="js/book.js"></script>
+  <script src="js/neural.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
