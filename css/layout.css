@@ -137,98 +137,174 @@
   100% { background-position: 0% 50%; }
 }
 
-/* ===== SIDEBAR ===== */
+/* ===== SIDEBAR — DARK THEME ===== */
+
+/* Dark sidebar tokens */
+:root {
+  --sidebar-bg:            #0d0f1a;
+  --sidebar-bg-surface:    #131627;
+  --sidebar-border:        rgba(255, 255, 255, 0.06);
+  --sidebar-text-primary:  #e8eaf6;
+  --sidebar-text-secondary:#8b90c4;
+  --sidebar-text-muted:    #4a4f7a;
+  --sidebar-accent:        #6366f1;
+  --sidebar-accent-glow:   rgba(99, 102, 241, 0.18);
+  --sidebar-accent-border: rgba(99, 102, 241, 0.35);
+  --sidebar-active-bg:     rgba(99, 102, 241, 0.12);
+  --sidebar-hover-bg:      rgba(255, 255, 255, 0.04);
+  --sidebar-section-w:     230px;
+}
+
 #sidebar {
   grid-column: 1;
   grid-row: 3;
-  background: var(--bg-sidebar);
-  border-right: 1px solid var(--border);
-  padding: 20px 12px;
+  width: var(--sidebar-section-w);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  padding: 18px 10px 14px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   overflow-y: auto;
+  position: relative;
+
+  /* Subtle inner grid texture */
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Fade mask at the bottom */
+#sidebar::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(transparent, var(--sidebar-bg));
+  pointer-events: none;
+  flex-shrink: 0;
 }
 
 .sidebar-section-label {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  padding: 8px 10px 4px;
+  letter-spacing: 0.18em;
+  color: var(--sidebar-text-muted);
+  padding: 4px 12px 10px;
+  border-bottom: 1px solid var(--sidebar-border);
+  margin-bottom: 6px;
 }
 
 .sidebar-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 9px 12px;
   border-radius: 10px;
   cursor: pointer;
-  color: var(--text-secondary);
-  font-size: 0.85rem;
+  color: var(--sidebar-text-secondary);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
   font-weight: 500;
-  transition: all 0.2s;
+  letter-spacing: 0.01em;
+  transition: all 0.18s ease;
   border: 1px solid transparent;
   user-select: none;
   position: relative;
 }
 
 .sidebar-item:hover {
-  background: rgba(59, 63, 240, 0.06);
-  color: var(--accent);
-  border-color: rgba(59, 63, 240, 0.12);
+  background: var(--sidebar-hover-bg);
+  color: var(--sidebar-text-primary);
+  border-color: var(--sidebar-border);
 }
 
 .sidebar-item.active {
-  background: rgba(59, 63, 240, 0.1);
-  color: var(--accent);
-  border-color: rgba(59, 63, 240, 0.2);
+  background: var(--sidebar-active-bg);
+  color: #a5b4fc;
+  border-color: var(--sidebar-accent-border);
   font-weight: 600;
 }
 
+/* Left accent bar on active */
 .sidebar-item.active::before {
   content: '';
   position: absolute;
-  left: -12px;
+  left: -10px;
   top: 50%;
   transform: translateY(-50%);
   width: 3px;
-  height: 60%;
-  background: var(--accent);
-  border-radius: 0 2px 2px 0;
+  height: 55%;
+  background: linear-gradient(to bottom, #818cf8, #6366f1);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
 }
 
+/* Icon container */
 .sidebar-item .si-icon {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(59, 63, 240, 0.08);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   flex-shrink: 0;
-  transition: background 0.2s;
+  transition: all 0.18s ease;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--sidebar-border);
+  color: var(--sidebar-text-secondary);
 }
 
-.sidebar-item.active .si-icon,
 .sidebar-item:hover .si-icon {
-  background: rgba(59, 63, 240, 0.15);
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.25);
+  color: #a5b4fc;
 }
 
+.sidebar-item.active .si-icon {
+  background: rgba(99, 102, 241, 0.18);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #a5b4fc;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+}
+
+/* Item number badge */
 .sidebar-item .si-num {
   margin-left: auto;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: var(--sidebar-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.sidebar-item.active .si-num {
+  color: rgba(165, 180, 252, 0.5);
 }
 
 .sidebar-divider {
   height: 1px;
-  background: var(--border);
-  margin: 8px 10px;
+  background: var(--sidebar-border);
+  margin: 10px 10px;
+}
+
+/* Keyboard hint area */
+#sidebar .kbd-hint {
+  color: var(--sidebar-text-muted);
+  font-size: 0.62rem;
+}
+
+#sidebar .kbd {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+  color: var(--sidebar-text-secondary);
 }
 
 /* ===== MAIN CONTENT AREA ===== */
@@ -279,14 +355,30 @@
   pointer-events: none;
 }
 
-/* ===== NEURAL PANEL ===== */
+/* ===== NEURAL PANEL — DARK THEME ===== */
+
+/* Dark neural tokens */
+:root {
+  --neural-bg:           #07080f;
+  --neural-bg-surface:   #0d0e1a;
+  --neural-border:       rgba(99, 102, 241, 0.12);
+  --neural-text-muted:   #3d4066;
+  --neural-accent:       #6366f1;
+  --neural-cyan:         #00d4c2;
+}
+
 #neural-panel {
   grid-column: 3;
   grid-row: 3;
-  border-left: 1px solid var(--border);
-  background: var(--bg-sidebar);
+  border-left: 1px solid var(--neural-border);
+  background: var(--neural-bg);
   position: relative;
   overflow: hidden;
+
+  /* Subtle radial atmosphere */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(0, 212, 194, 0.05) 0%, transparent 65%);
 }
 
 #neural-canvas {
@@ -297,14 +389,15 @@
 
 .neural-label {
   position: absolute;
-  bottom: 16px;
+  bottom: 14px;
   left: 0;
   right: 0;
   text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--neural-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* ===== FOOTER ===== */
