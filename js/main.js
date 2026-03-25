@@ -1,53 +1,44 @@
-// Main Portfolio App
+// ===== PORTFOLIO APP =====
 class PortfolioApp {
   constructor() {
     this.book = new BookEngine();
 
     this.pages = [
-      { id: 'home', label: 'Home', icon: '<i class="fa-solid fa-house"></i>', file: '/pages/home.html' },
-      { id: 'about', label: 'About', icon: '<i class="fa-solid fa-user"></i>', file: '/pages/about.html' },
-      { id: 'skills', label: 'Skills', icon: '<i class="fa-solid fa-bolt"></i>', file: '/pages/skills.html' },
-      { id: 'projects', label: 'Projects', icon: '<i class="fa-solid fa-diagram-project"></i>', file: '/pages/projects.html' },
-      { id: 'certificates', label: 'Certificates', icon: '<i class="fa-solid fa-award"></i>', file: '/pages/certificates.html' },
-      { id: 'training', label: 'Training', icon: '<i class="fa-solid fa-bullseye"></i>', file: '/pages/training.html' },
-      { id: 'education', label: 'Education', icon: '<i class="fa-solid fa-graduation-cap"></i>', file: '/pages/education.html' },
-      { id: 'contact', label: 'Contact', icon: '<i class="fa-solid fa-envelope"></i>', file: '/pages/contact.html' },
+      { id: 'home',         label: 'Home',         icon: '<i class="fa-solid fa-house"></i>',            file: 'pages/home.html' },
+      { id: 'about',        label: 'About',        icon: '<i class="fa-solid fa-user"></i>',             file: 'pages/about.html' },
+      { id: 'skills',       label: 'Skills',       icon: '<i class="fa-solid fa-bolt"></i>',             file: 'pages/skills.html' },
+      { id: 'projects',     label: 'Projects',     icon: '<i class="fa-solid fa-diagram-project"></i>',  file: 'pages/projects.html' },
+      { id: 'certificates', label: 'Certificates', icon: '<i class="fa-solid fa-award"></i>',            file: 'pages/certificates.html' },
+      { id: 'training',     label: 'Training',     icon: '<i class="fa-solid fa-bullseye"></i>',         file: 'pages/training.html' },
+      { id: 'education',    label: 'Education',    icon: '<i class="fa-solid fa-graduation-cap"></i>',   file: 'pages/education.html' },
+      { id: 'contact',      label: 'Contact',      icon: '<i class="fa-solid fa-envelope"></i>',         file: 'pages/contact.html' },
     ];
 
     this.init();
   }
 
-
   async init() {
-    // Load all page content
     const pageData = await Promise.all(
-      this.pages.map(async (p, i) => {
+      this.pages.map(async (p) => {
         try {
           const res = await fetch(p.file);
+          if (!res.ok) throw new Error('Not found');
           const content = await res.text();
           return { ...p, content };
         } catch (e) {
-          return { ...p, content: `<div class="page-inner"><p>Page content loading...</p></div>` };
+          return { ...p, content: `<div class="page-inner"><p style="color:var(--text-muted);padding:20px;">Could not load ${p.label} page.</p></div>` };
         }
       })
     );
 
-    // Build sidebar
     this.buildSidebar(pageData);
-
-    // Init book
     this.book.setPages(pageData);
     await this.book.init();
-
-    // Event listeners
     this.bindArrows();
     this.bindKeyboard();
-
-    // Trigger home animations
     this.book.triggerPageAnimations(0);
     startTypewriter();
 
-    // Hide loader
     setTimeout(() => {
       const loader = document.getElementById('loading-screen');
       if (loader) loader.classList.add('hidden');
@@ -58,9 +49,7 @@ class PortfolioApp {
     const sidebar = document.getElementById('sidebar');
     if (!sidebar) return;
 
-    sidebar.innerHTML = `
-      <div class="sidebar-section-label">Navigation</div>
-    `;
+    sidebar.innerHTML = '<div class="sidebar-section-label">Navigation</div>';
 
     pageData.forEach((p, i) => {
       const item = document.createElement('div');
@@ -75,17 +64,18 @@ class PortfolioApp {
       sidebar.appendChild(item);
     });
 
-    // Keyboard hint
-    sidebar.innerHTML += `
+    const hint = document.createElement('div');
+    hint.innerHTML = `
       <div class="sidebar-divider"></div>
       <div style="padding:10px 10px 4px;">
         <div class="kbd-hint">
-          <span class="kbd">←</span>
-          <span class="kbd">→</span>
+          <span class="kbd">&#8592;</span>
+          <span class="kbd">&#8594;</span>
           <span style="margin-left:2px;">Navigate</span>
         </div>
       </div>
     `;
+    sidebar.appendChild(hint);
   }
 
   updateSidebar(index) {
@@ -96,8 +86,7 @@ class PortfolioApp {
 
   goToPage(index) {
     if (index === this.book.currentPage) return;
-    const direction = index > this.book.currentPage ? 'forward' : 'backward';
-    this.book.goTo(index, direction);
+    this.book.goTo(index);
     this.updateSidebar(index);
   }
 
@@ -118,6 +107,9 @@ class PortfolioApp {
 
   bindKeyboard() {
     document.addEventListener('keydown', (e) => {
+      // Don't hijack keys when lightbox is open
+      if (document.getElementById('cert-lightbox')?.classList.contains('open')) return;
+
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
         const newIdx = this.book.currentPage + 1;
@@ -132,13 +124,15 @@ class PortfolioApp {
   }
 }
 
-// Typewriter effect
+
+// ===== TYPEWRITER =====
+// Uses plain text only — slicing HTML strings breaks mid-tag
 const ROLES = [
-  '<i class="fa-solid fa-robot"></i> AI Engineer',
-  '<i class="fa-solid fa-brain"></i> ML Enthusiast',
-  '<i class="fa-solid fa-code"></i> Software Developer',
-  '<i class="fa-solid fa-magnifying-glass"></i> Problem Solver',
-  '<i class="fa-solid fa-graduation-cap"></i> CSE Student @ LPU',
+  'AI Engineer',
+  'ML Enthusiast',
+  'Software Developer',
+  'Problem Solver',
+  'CSE Student @ LPU',
 ];
 
 let twIndex = 0, twCharIndex = 0, twDeleting = false, twTimer = null;
@@ -147,7 +141,9 @@ function startTypewriter() {
   const el = document.getElementById('typewriter-text');
   if (!el) return;
   if (twTimer) clearTimeout(twTimer);
-  twIndex = 0; twCharIndex = 0; twDeleting = false;
+  twIndex = 0;
+  twCharIndex = 0;
+  twDeleting = false;
   typeStep(el);
 }
 
@@ -155,25 +151,71 @@ function typeStep(el) {
   const current = ROLES[twIndex % ROLES.length];
 
   if (!twDeleting) {
-    el.innerHTML = current.slice(0, ++twCharIndex);
+    twCharIndex++;
+    el.textContent = current.slice(0, twCharIndex);
     if (twCharIndex === current.length) {
       twDeleting = true;
       twTimer = setTimeout(() => typeStep(el), 1800);
       return;
     }
   } else {
-    el.innerHTML = current.slice(0, --twCharIndex);
+    twCharIndex--;
+    el.textContent = current.slice(0, twCharIndex);
     if (twCharIndex === 0) {
       twDeleting = false;
       twIndex++;
     }
   }
-  twTimer = setTimeout(() => typeStep(el), twDeleting ? 60 : 90);
+
+  twTimer = setTimeout(() => typeStep(el), twDeleting ? 55 : 85);
 }
 
 window.startTypewriter = startTypewriter;
 
-// Boot
+
+// ===== CERTIFICATE LIGHTBOX =====
+function openCert(imgSrc, title) {
+  const lb  = document.getElementById('cert-lightbox');
+  const img = document.getElementById('cert-lightbox-img');
+  const ph  = document.getElementById('cert-lightbox-placeholder');
+  const ttl = document.getElementById('cert-lightbox-title');
+  const dl  = document.getElementById('cert-lightbox-download');
+
+  if (!lb || !img || !ph || !ttl || !dl) return;
+
+  ttl.textContent = title;
+  img.classList.remove('loaded');
+  ph.classList.remove('show');
+  img.src = '';
+
+  img.onload  = () => { img.classList.add('loaded'); ph.classList.remove('show'); };
+  img.onerror = () => { img.classList.remove('loaded'); ph.classList.add('show'); };
+
+  img.src = imgSrc;
+  dl.href = imgSrc;
+  dl.download = title.replace(/[^a-z0-9]/gi, '_') + '.jpg';
+
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCert(event, force) {
+  const lb = document.getElementById('cert-lightbox');
+  if (!lb) return;
+  if (!force && event && event.target !== lb) return;
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeCert(null, true);
+});
+
+window.openCert  = openCert;
+window.closeCert = closeCert;
+
+
+// ===== BOOT =====
 document.addEventListener('DOMContentLoaded', () => {
   window.portfolioApp = new PortfolioApp();
 });

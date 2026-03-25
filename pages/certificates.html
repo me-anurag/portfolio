@@ -4,49 +4,51 @@
   <div class="section-label">04 — Achievements</div>
   <h2 class="section-title">Certificates</h2>
 
-  <div class="cert-card">
-    <div class="cert-icon">
-      <i class="fa-solid fa-calculator"></i>
-    </div>
-    <div>
-      <div class="cert-title">
-        Computational Theory: Language Principles & Finite Automata Theory
-      </div>
+  <div class="cert-card" onclick="openCert('assets/certificates/cert-infosys.jpg', 'Computational Theory — Infosys Springboard')">
+    <div class="cert-icon"><i class="fa-solid fa-calculator"></i></div>
+    <div class="cert-info">
+      <div class="cert-title">Computational Theory: Language Principles & Finite Automata Theory</div>
       <div class="cert-issuer">Infosys Springboard</div>
       <div class="cert-date">Aug 2025</div>
     </div>
+    <div class="cert-view-btn">
+      <i class="fa-solid fa-eye"></i> View
+    </div>
   </div>
 
-  <div class="cert-card">
-    <div class="cert-icon">
-      <i class="fa-solid fa-pencil-ruler"></i>
-    </div>
-    <div>
+  <div class="cert-card" onclick="openCert('assets/certificates/cert-lpu-design.jpg', 'Think Design Prototype — LPU')">
+    <div class="cert-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+    <div class="cert-info">
       <div class="cert-title">Think Design Prototype</div>
       <div class="cert-issuer">Centre for Professional Enhancement, LPU</div>
       <div class="cert-date">Jul 2025</div>
     </div>
+    <div class="cert-view-btn">
+      <i class="fa-solid fa-eye"></i> View
+    </div>
   </div>
 
-  <div class="cert-card">
-    <div class="cert-icon">
-      <i class="fa-solid fa-network-wired"></i>
-    </div>
-    <div>
+  <div class="cert-card" onclick="openCert('assets/certificates/cert-coursera.jpg', 'Computer Communications — University of Colorado')">
+    <div class="cert-icon"><i class="fa-solid fa-network-wired"></i></div>
+    <div class="cert-info">
       <div class="cert-title">Computer Communications Specialization</div>
       <div class="cert-issuer">University of Colorado — Coursera</div>
       <div class="cert-date">Nov 2024</div>
     </div>
+    <div class="cert-view-btn">
+      <i class="fa-solid fa-eye"></i> View
+    </div>
   </div>
 
-  <div class="cert-card">
-    <div class="cert-icon">
-      <i class="fa-solid fa-code"></i>
-    </div>
-    <div>
+  <div class="cert-card" onclick="openCert('assets/certificates/cert-rising-tech.jpg', 'Web Development — Rising Tech Pro')">
+    <div class="cert-icon"><i class="fa-solid fa-code"></i></div>
+    <div class="cert-info">
       <div class="cert-title">Web Development</div>
       <div class="cert-issuer">Rising Tech Pro</div>
       <div class="cert-date">Mar 2024</div>
+    </div>
+    <div class="cert-view-btn">
+      <i class="fa-solid fa-eye"></i> View
     </div>
   </div>
 
@@ -54,10 +56,36 @@
     <div style="font-size:0.82rem;color:var(--text-secondary);line-height:1.6;">
       <strong style="color:var(--text-primary);">
         <i class="fa-solid fa-bullseye"></i> Always Learning
-      </strong>
-      <br>
+      </strong><br>
       Continuously expanding knowledge through MOOCs, certifications, and hands-on projects in AI, ML, and software engineering.
     </div>
   </div>
 
+</div>
+
+<!-- ===== CERTIFICATE LIGHTBOX ===== -->
+<div id="cert-lightbox" onclick="closeCert(event)">
+  <div class="cert-lightbox-box">
+    <div class="cert-lightbox-header">
+      <span id="cert-lightbox-title"></span>
+      <button class="cert-lightbox-close" onclick="closeCert(null, true)">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="cert-lightbox-body">
+      <img id="cert-lightbox-img" src="" alt="Certificate" />
+      <div id="cert-lightbox-placeholder">
+        <i class="fa-solid fa-image" style="font-size:3rem;color:var(--text-muted);"></i>
+        <p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">
+          Certificate image not found.<br>
+          Add it to <code>assets/certificates/</code>
+        </p>
+      </div>
+    </div>
+    <div class="cert-lightbox-footer">
+      <a id="cert-lightbox-download" href="" download class="btn-primary" style="font-size:0.8rem;padding:8px 16px;">
+        <i class="fa-solid fa-download"></i> Download
+      </a>
+    </div>
+  </div>
 </div>
