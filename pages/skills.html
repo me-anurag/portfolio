@@ -191,36 +191,290 @@
   <!-- Soft Skills -->
   <div class="skill-category-title">Soft Skills</div>
 
-  <div class="soft-skill-item">
-    <div class="soft-icon">🔍</div>
-    <div>
-      <div class="soft-name">Problem Solving</div>
-      <div class="soft-desc">Breaking complex challenges into logical, solvable steps</div>
+  <div class="soft-skills-grid">
+
+    <!-- Problem Solving -->
+    <div class="soft-skill-card">
+      <div class="soft-skill-illustration">
+        <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Glow bg blob -->
+          <ellipse cx="80" cy="60" rx="62" ry="48" fill="rgba(59,63,240,0.07)" />
+
+          <!-- Maze grid (stylized) -->
+          <g stroke="#C7CAF8" stroke-width="2" stroke-linecap="round" fill="none">
+            <!-- outer border -->
+            <rect x="28" y="18" width="68" height="68" rx="6" stroke="#A5A8F0" stroke-width="2"/>
+            <!-- horizontal walls -->
+            <line x1="28" y1="38" x2="64" y2="38"/>
+            <line x1="56" y1="58" x2="96" y2="58"/>
+            <line x1="28" y1="68" x2="52" y2="68"/>
+            <line x1="72" y1="38" x2="96" y2="38"/>
+            <!-- vertical walls -->
+            <line x1="52" y1="18" x2="52" y2="38"/>
+            <line x1="72" y1="38" x2="72" y2="58"/>
+            <line x1="52" y1="68" x2="52" y2="86"/>
+            <line x1="72" y1="58" x2="72" y2="86"/>
+          </g>
+
+          <!-- Glowing solution path -->
+          <polyline
+            points="36,78 36,68 36,48 36,28 52,28 72,28 72,38 88,38 88,48 88,68 88,78 76,78"
+            stroke="#3B3FF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
+            stroke-dasharray="5 3" opacity="0.8"/>
+
+          <!-- Start dot -->
+          <circle cx="36" cy="78" r="5" fill="#00C9B8" stroke="white" stroke-width="1.5"/>
+          <!-- End flag -->
+          <rect x="74" y="66" width="10" height="14" rx="2" fill="#3B3FF0" opacity="0.15" stroke="#3B3FF0" stroke-width="1.2"/>
+          <circle cx="79" cy="79" r="4.5" fill="#3B3FF0" stroke="white" stroke-width="1.5"/>
+
+          <!-- Magnifier -->
+          <circle cx="116" cy="36" r="16" fill="white" stroke="#3B3FF0" stroke-width="2.5" opacity="0.95"/>
+          <circle cx="116" cy="36" r="10" fill="rgba(59,63,240,0.09)" stroke="#3B3FF0" stroke-width="1.2"/>
+          <!-- cross-hair lines inside lens -->
+          <line x1="109" y1="36" x2="123" y2="36" stroke="#3B3FF0" stroke-width="1.2" opacity="0.5"/>
+          <line x1="116" y1="29" x2="116" y2="43" stroke="#3B3FF0" stroke-width="1.2" opacity="0.5"/>
+          <!-- handle -->
+          <line x1="127" y1="47" x2="138" y2="58" stroke="#3B3FF0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="127" y1="47" x2="138" y2="58" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+
+          <!-- Tiny sparks -->
+          <circle cx="106" cy="84" r="3" fill="#7B5CF0" opacity="0.7"/>
+          <circle cx="118" cy="92" r="2" fill="#00C9B8" opacity="0.7"/>
+          <circle cx="130" cy="80" r="2.5" fill="#3B3FF0" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="soft-skill-info">
+        <div class="soft-name">Problem Solving</div>
+        <div class="soft-desc">Breaking complex challenges into logical, solvable steps</div>
+      </div>
     </div>
+
+    <!-- Creativity -->
+    <div class="soft-skill-card">
+      <div class="soft-skill-illustration">
+        <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- glow -->
+          <ellipse cx="80" cy="60" rx="62" ry="48" fill="rgba(123,92,240,0.07)" />
+
+          <!-- Palette -->
+          <ellipse cx="70" cy="72" rx="38" ry="28" fill="#FAF9FF" stroke="#D6D0FA" stroke-width="1.5"/>
+          <ellipse cx="70" cy="72" rx="28" ry="18" fill="white" stroke="#E2E5F8" stroke-width="1"/>
+          <!-- thumb hole -->
+          <ellipse cx="83" cy="80" rx="7" ry="5" fill="#E2E5F8" stroke="#C7CAF8" stroke-width="1"/>
+
+          <!-- Color blobs on palette -->
+          <circle cx="44" cy="70" r="7" fill="#FF6B6B"/>
+          <circle cx="56" cy="58" r="7" fill="#FFD93D"/>
+          <circle cx="72" cy="54" r="7" fill="#6BCB77"/>
+          <circle cx="87" cy="60" r="7" fill="#3B3FF0" opacity="0.8"/>
+          <circle cx="94" cy="74" r="7" fill="#00C9B8"/>
+
+          <!-- Paintbrush -->
+          <line x1="105" y1="24" x2="60" y2="68" stroke="#8B7B6A" stroke-width="4" stroke-linecap="round"/>
+          <line x1="105" y1="24" x2="60" y2="68" stroke="#C4A882" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <!-- brush tip -->
+          <ellipse cx="57" cy="71" rx="5" ry="3" fill="#3B3FF0" transform="rotate(-45 57 71)"/>
+
+          <!-- Stars / sparkles -->
+          <g fill="none" stroke="#7B5CF0" stroke-width="1.5" stroke-linecap="round">
+            <line x1="120" y1="30" x2="120" y2="40"/>
+            <line x1="115" y1="35" x2="125" y2="35"/>
+            <line x1="116" y1="31" x2="124" y2="39"/>
+            <line x1="124" y1="31" x2="116" y2="39"/>
+          </g>
+          <g fill="none" stroke="#00C9B8" stroke-width="1.3" stroke-linecap="round">
+            <line x1="30" y1="38" x2="30" y2="45"/>
+            <line x1="26.5" y1="41.5" x2="33.5" y2="41.5"/>
+          </g>
+          <circle cx="137" cy="58" r="3.5" fill="#FFD93D" opacity="0.85"/>
+          <circle cx="22" cy="58" r="2.5" fill="#FF6B6B" opacity="0.7"/>
+          <circle cx="125" cy="90" r="3" fill="#6BCB77" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="soft-skill-info">
+        <div class="soft-name">Creativity</div>
+        <div class="soft-desc">Designing novel solutions and user experiences</div>
+      </div>
+    </div>
+
+    <!-- Team Player -->
+    <div class="soft-skill-card">
+      <div class="soft-skill-illustration">
+        <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- glow -->
+          <ellipse cx="80" cy="62" rx="62" ry="46" fill="rgba(0,201,184,0.07)" />
+
+          <!-- connection lines between people -->
+          <line x1="42" y1="64" x2="80" y2="52" stroke="#00C9B8" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+          <line x1="80" y1="52" x2="118" y2="64" stroke="#00C9B8" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+          <line x1="42" y1="64" x2="118" y2="64" stroke="#00C9B8" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.4"/>
+
+          <!-- Left person -->
+          <circle cx="42" cy="46" r="13" fill="#FFD4B8" stroke="#F4A97A" stroke-width="1.5"/>
+          <!-- hair -->
+          <path d="M29,40 Q36,28 42,33 Q48,28 55,40" fill="#5C3D2E" opacity="0.9"/>
+          <!-- face features -->
+          <circle cx="38" cy="44" r="1.8" fill="#5C3D2E"/>
+          <circle cx="46" cy="44" r="1.8" fill="#5C3D2E"/>
+          <path d="M38,50 Q42,54 46,50" stroke="#C97A5A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- body -->
+          <path d="M28,84 Q28,66 42,64 Q56,66 56,84" fill="#3B3FF0" opacity="0.85"/>
+
+          <!-- Center (star) person -->
+          <circle cx="80" cy="36" r="14" fill="#FFD4B8" stroke="#F4A97A" stroke-width="1.5"/>
+          <!-- hair -->
+          <path d="M66,30 Q73,18 80,24 Q87,18 94,30" fill="#2C2C2C" opacity="0.9"/>
+          <circle cx="76" cy="34" r="1.8" fill="#2C2C2C"/>
+          <circle cx="84" cy="34" r="1.8" fill="#2C2C2C"/>
+          <path d="M76,40 Q80,44 84,40" stroke="#C97A5A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- body (center - accent) -->
+          <path d="M66,76 Q66,56 80,54 Q94,56 94,76" fill="#00C9B8" opacity="0.9"/>
+
+          <!-- Right person -->
+          <circle cx="118" cy="46" r="13" fill="#FFD4B8" stroke="#F4A97A" stroke-width="1.5"/>
+          <!-- hair (ponytail) -->
+          <path d="M105,42 Q110,28 118,33 Q126,28 131,42" fill="#8B5E3C" opacity="0.9"/>
+          <circle cx="114" cy="44" r="1.8" fill="#8B5E3C"/>
+          <circle cx="122" cy="44" r="1.8" fill="#8B5E3C"/>
+          <path d="M114,50 Q118,54 122,50" stroke="#C97A5A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M104,84 Q104,66 118,64 Q132,66 132,84" fill="#7B5CF0" opacity="0.85"/>
+
+          <!-- High-five hands in center -->
+          <circle cx="80" cy="80" r="10" fill="rgba(0,201,184,0.12)" stroke="#00C9B8" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <text x="80" y="84" text-anchor="middle" font-size="12" fill="#00C9B8">✦</text>
+        </svg>
+      </div>
+      <div class="soft-skill-info">
+        <div class="soft-name">Team Player</div>
+        <div class="soft-desc">Collaborating effectively in diverse team environments</div>
+      </div>
+    </div>
+
+    <!-- Adaptability -->
+    <div class="soft-skill-card">
+      <div class="soft-skill-illustration">
+        <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- glow -->
+          <ellipse cx="80" cy="60" rx="62" ry="48" fill="rgba(0,201,184,0.07)" />
+
+          <!-- Circular arrows (adapt ring) -->
+          <!-- outer arc top-right -->
+          <path d="M80,22 A42,42 0 0,1 122,64" fill="none" stroke="#3B3FF0" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+          <!-- arrowhead top-right -->
+          <polygon points="124,52 128,66 116,62" fill="#3B3FF0" opacity="0.9"/>
+
+          <!-- outer arc bottom-left -->
+          <path d="M80,102 A42,42 0 0,1 38,60" fill="none" stroke="#00C9B8" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+          <!-- arrowhead bottom-left -->
+          <polygon points="36,72 32,58 44,62" fill="#00C9B8" opacity="0.9"/>
+
+          <!-- Inner icon: lightning bolt (fast change) -->
+          <polygon points="86,32 74,60 82,60 74,90 98,54 88,54" fill="#FFD93D" stroke="#F4C430" stroke-width="1" opacity="0.95"/>
+
+          <!-- Floating tech badges (adapting contexts) -->
+          <!-- code tag left -->
+          <rect x="14" y="44" width="28" height="18" rx="5" fill="#EEF0FF" stroke="#A5A8F0" stroke-width="1.2"/>
+          <text x="28" y="57" text-anchor="middle" font-size="9" fill="#3B3FF0" font-family="monospace" font-weight="600">&lt;/&gt;</text>
+
+          <!-- python-like badge top -->
+          <rect x="56" y="8" width="24" height="16" rx="4" fill="#E8FBF7" stroke="#00C9B8" stroke-width="1.2"/>
+          <text x="68" y="20" text-anchor="middle" font-size="8" fill="#00C9B8" font-family="monospace" font-weight="600">Py</text>
+
+          <!-- AI badge right -->
+          <rect x="118" y="44" width="28" height="18" rx="5" fill="#F3EEFF" stroke="#7B5CF0" stroke-width="1.2"/>
+          <text x="132" y="57" text-anchor="middle" font-size="9" fill="#7B5CF0" font-family="monospace" font-weight="600">AI</text>
+
+          <!-- cloud badge bottom -->
+          <rect x="60" y="98" width="26" height="16" rx="4" fill="#FFF5D6" stroke="#F4C430" stroke-width="1.2"/>
+          <text x="73" y="110" text-anchor="middle" font-size="8" fill="#B8860B" font-family="monospace" font-weight="600">☁</text>
+
+          <!-- Tiny orbit dots -->
+          <circle cx="108" cy="22" r="3.5" fill="#7B5CF0" opacity="0.7"/>
+          <circle cx="140" cy="74" r="2.5" fill="#3B3FF0" opacity="0.6"/>
+          <circle cx="24" cy="84" r="3" fill="#00C9B8" opacity="0.7"/>
+          <circle cx="42" cy="26" r="2" fill="#FFD93D" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="soft-skill-info">
+        <div class="soft-name">Adaptability</div>
+        <div class="soft-desc">Quickly learning new technologies and environments</div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="soft-skill-item">
-    <div class="soft-icon">💡</div>
-    <div>
-      <div class="soft-name">Creativity</div>
-      <div class="soft-desc">Designing novel solutions and user experiences</div>
-    </div>
-  </div>
+  <style>
+    .soft-skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
 
-  <div class="soft-skill-item">
-    <div class="soft-icon">🤝</div>
-    <div>
-      <div class="soft-name">Team Player</div>
-      <div class="soft-desc">Collaborating effectively in diverse team environments</div>
-    </div>
-  </div>
+    .soft-skill-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      transition: all 0.25s ease;
+      overflow: hidden;
+      position: relative;
+    }
 
-  <div class="soft-skill-item">
-    <div class="soft-icon">🔄</div>
-    <div>
-      <div class="soft-name">Adaptability</div>
-      <div class="soft-desc">Quickly learning new technologies and environments</div>
-    </div>
-  </div>
+    .soft-skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(59,63,240,0.03), rgba(0,201,184,0.03));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .soft-skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(59,63,240,0.12);
+    }
+
+    .soft-skill-card:hover::before {
+      opacity: 1;
+    }
+
+    .soft-skill-illustration {
+      width: 90px;
+      height: 68px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .soft-skill-illustration svg {
+      width: 90px;
+      height: 68px;
+    }
+
+    .soft-skill-info {
+      flex: 1;
+    }
+
+    .soft-skill-info .soft-name {
+      font-size: 0.87rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      margin-bottom: 3px;
+    }
+
+    .soft-skill-info .soft-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+  </style>
 
 </div>

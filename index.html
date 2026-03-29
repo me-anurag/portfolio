@@ -21,6 +21,82 @@
   <style>
     /* Additional inline tweaks */
     .skill-chip { cursor: default; }
+
+    /* ===== RESUME DROPDOWN ===== */
+    .nav-resume-dropdown { position: relative; }
+
+    .nav-resume-chevron {
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      flex-shrink: 0;
+    }
+    .nav-resume-dropdown.open .nav-resume-chevron { transform: rotate(180deg); }
+
+    .nav-resume-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 222px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 4px 6px rgba(59,63,240,0.04), 0 12px 32px rgba(59,63,240,0.13), 0 24px 48px rgba(59,63,240,0.08);
+      padding: 6px;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px) scale(0.97);
+      transform-origin: top right;
+      transition: opacity 0.22s cubic-bezier(0.34,1.1,0.64,1), transform 0.22s cubic-bezier(0.34,1.1,0.64,1), visibility 0.22s;
+      pointer-events: none;
+    }
+    .nav-resume-menu::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: 22px;
+      width: 10px;
+      height: 10px;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+      transform: rotate(45deg);
+      border-radius: 2px 0 0 0;
+    }
+    .nav-resume-dropdown.open .nav-resume-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
+    .nav-resume-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: background 0.15s ease, transform 0.15s ease;
+      cursor: pointer;
+    }
+    .nav-resume-option:hover { background: rgba(59,63,240,0.05); transform: translateX(2px); color: var(--text-primary); }
+    .nav-resume-option:first-child { border-bottom: 1px solid var(--border); border-radius: 10px 10px 4px 4px; margin-bottom: 4px; padding-bottom: 12px; }
+    .nav-resume-option:last-child { border-radius: 4px 4px 10px 10px; }
+
+    .nav-resume-option-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.15s;
+    }
+    .nav-resume-option-icon--view  { background: rgba(59,63,240,0.08); color: var(--accent); border: 1px solid rgba(59,63,240,0.15); }
+    .nav-resume-option:hover .nav-resume-option-icon--view { background: rgba(59,63,240,0.14); }
+    .nav-resume-option-icon--dl    { background: rgba(0,201,184,0.08); color: var(--accent-2); border: 1px solid rgba(0,201,184,0.18); }
+    .nav-resume-option:hover .nav-resume-option-icon--dl   { background: rgba(0,201,184,0.14); }
+
+    .nav-resume-option-text { display: flex; flex-direction: column; gap: 1px; }
+    .nav-resume-option-label { font-family: var(--font-display); font-size: 0.83rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+    .nav-resume-option-sub   { font-family: var(--font-mono); font-size: 0.64rem; color: var(--text-muted); line-height: 1.2; }
   </style>
   <!-- Font Awesome (for general icons) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -59,10 +135,34 @@
         <a href="https://www.linkedin.com/in/anurag-patel13" target="_blank" class="nav-icon-btn" title="LinkedIn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
-        <a href="mailto:iamanuragpatel13@gmail.com" class="nav-icon-btn" title="Email">✉</a>
-        <a href="assets/resume/resume.pdf" download class="nav-cv-btn">
-          📥 Resume
-        </a>
+        <a href="/cdn-cgi/l/email-protection#bdd4dcd0dcd3c8cfdcdacddcc9d8d18c8efddad0dcd4d193ded2d0" class="nav-icon-btn" title="Email">✉</a>
+        <div class="nav-resume-dropdown" id="resumeDropdown">
+          <button class="nav-cv-btn" onclick="toggleResumeDropdown(event)" aria-haspopup="true" aria-expanded="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Resume
+            <svg class="nav-resume-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-resume-menu" id="resumeMenu" role="menu">
+            <a href="assets/resume/resume.pdf" target="_blank" rel="noopener" class="nav-resume-option" role="menuitem">
+              <span class="nav-resume-option-icon nav-resume-option-icon--view">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+              <span class="nav-resume-option-text">
+                <span class="nav-resume-option-label">View Resume</span>
+                <span class="nav-resume-option-sub">Open in browser</span>
+              </span>
+            </a>
+            <a href="assets/resume/resume.pdf" download="Anurag_Patel_Resume.pdf" class="nav-resume-option" role="menuitem">
+              <span class="nav-resume-option-icon nav-resume-option-icon--dl">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </span>
+              <span class="nav-resume-option-text">
+                <span class="nav-resume-option-label">Download Resume</span>
+                <span class="nav-resume-option-sub">Save as PDF</span>
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
 
@@ -126,8 +226,8 @@
   </div>
 
   <div class="footer-center">
-    <a href="mailto:iamanuragpatel13@gmail.com" class="footer-link">
-      iamanuragpatel13@gmail.com
+    <a href="/cdn-cgi/l/email-protection#ea838b878b849f988b8d9a8b9e8f86dbd9aa8d878b8386c4898587" class="footer-link">
+      <span class="__cf_email__" data-cfemail="264f474b474853544741564752434a171566414b474f4a0845494b">[email&#160;protected]</span>
     </a>
     <div class="footer-dot"></div>
     <a href="https://github.com/me-anurag" target="_blank" rel="noopener noreferrer" class="footer-link">
@@ -237,6 +337,36 @@
 </style>
 
   </div><!-- #app -->
+
+  <!-- Resume Dropdown JS -->
+  <script>
+    function toggleResumeDropdown(e) {
+      e.stopPropagation();
+      const dd  = document.getElementById('resumeDropdown');
+      const btn = dd.querySelector('.nav-cv-btn');
+      const isOpen = dd.classList.contains('open');
+      dd.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+    document.addEventListener('click', function(e) {
+      const dd = document.getElementById('resumeDropdown');
+      if (dd && !dd.contains(e.target)) {
+        dd.classList.remove('open');
+        const btn = dd.querySelector('.nav-cv-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const dd = document.getElementById('resumeDropdown');
+        if (dd && dd.classList.contains('open')) {
+          dd.classList.remove('open');
+          const btn = dd.querySelector('.nav-cv-btn');
+          if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+        }
+      }
+    });
+  </script>
 
   <!-- Scripts -->
   <script src="js/book.js"></script>
