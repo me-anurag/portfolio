@@ -39,10 +39,17 @@ class PortfolioApp {
     this.book.triggerPageAnimations(0);
     startTypewriter();
 
-    setTimeout(() => {
+    // Hide loader when the neural sweep signals done, but never before 1.8s
+    const hideLoader = () => {
       const loader = document.getElementById('loading-screen');
       if (loader) loader.classList.add('hidden');
-    }, 1600);
+      if (window._stopLoaderAnim) window._stopLoaderAnim();
+    };
+    const minWait = new Promise(r => setTimeout(r, 1800));
+    let sweepDone = false;
+    window._loaderDone = () => { sweepDone = true; minWait.then(hideLoader); };
+    // Fallback: if sweep never fires (e.g. canvas blocked), hide after 3.5s
+    setTimeout(() => { if (!sweepDone) hideLoader(); }, 3500);
   }
 
   buildSidebar(pageData) {
