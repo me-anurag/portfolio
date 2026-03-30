@@ -136,8 +136,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 0;
+      justify-content: space-between;
+      padding: 52px 0 48px;
       transition: opacity 0.7s ease, visibility 0.7s ease;
     }
     #loading-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -145,12 +145,11 @@
     /* ── Big name at top ── */
     .ls-name {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 800;
       color: #c7d2fe;
       letter-spacing: -0.02em;
       line-height: 1;
-      margin-bottom: 32px;
       text-align: center;
       animation: ls-name-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
@@ -161,15 +160,15 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Canvas ── */
+    /* ── Canvas fills the middle ── */
     #loader-canvas {
       display: block;
-      /* width/height set by JS to fill a fixed rect */
+      flex: 1;
+      width: 100%;
     }
 
     /* ── Bottom text ── */
     .ls-bottom {
-      margin-top: 28px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -216,12 +215,13 @@
 
   <script>
   (function () {
-    /* ── Canvas sizing: a wide fixed rect, vertically centred ── */
+    /* ── Canvas sizing: full available space between name and footer text ── */
     const canvas = document.getElementById('loader-canvas');
     const ctx    = canvas.getContext('2d');
 
-    const CW = Math.min(window.innerWidth * 0.88, 860);
-    const CH = Math.min(window.innerHeight * 0.38, 240);
+    // Reserve px for name (~100px) + bottom text (~60px) + paddings (100px total)
+    const CW = window.innerWidth;
+    const CH = window.innerHeight - 200;
     canvas.width  = CW;
     canvas.height = CH;
     canvas.style.width  = CW + 'px';
@@ -229,7 +229,7 @@
 
     /* ── Network layout ── */
     const LAYERS = [3, 5, 6, 5, 4, 2];
-    const PAD_X  = 48, PAD_Y = 28;
+    const PAD_X  = 60, PAD_Y = 18;
     const netW   = CW - PAD_X * 2;
     const netH   = CH - PAD_Y * 2;
 
